@@ -229,3 +229,5 @@ EXEC 					38;5;46		# This is for files with execute permission:
 .zoo					38;5;199
 .deb					38;5;199
 .dpkg					38;5;199
+.pkg					38;5;199
+.dmg					38;5;199

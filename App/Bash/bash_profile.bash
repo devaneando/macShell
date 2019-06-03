@@ -5,6 +5,8 @@ case $- in
 esac
 
 export BASE="${HOME}/Shell"
+export CLICOLOR=1
+export CLICOLOR_FORCE=1
 
 if [[ -f "${BASE}/App/Bash/Inc/settings.bash" ]]; then
     source "${BASE}/App/Bash/Inc/settings.bash"
@@ -30,6 +32,7 @@ if [[ -f "${BASE}/App/Bash/Completion/git.bash" ]]; then
     source "${BASE}/App/Bash/Completion/git.bash"
 fi
 
-export PATH="$PATH:.:/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin"
+export PATH="$PATH:.:/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/opt/local/bin:/opt/local/sbin"
+export PATH="$PATH:${HOME}/Shell/App/Git/Scripts"
 
 export CDPATH=~/Projects
