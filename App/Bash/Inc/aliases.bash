@@ -7,6 +7,10 @@ alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
 
+alias grep='grep --color'
+alias la='ls -AFho'
+alias ps='ps -Afr'
+
 # Allows vi to automatically edit protected files
 function __vi() {
     # If the file in question does not exist
