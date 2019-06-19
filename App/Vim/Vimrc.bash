@@ -37,6 +37,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+set noswapfile
 set showcmd " show command in bottom bar
 set cursorline " highlight current line
 set lazyredraw " redraw only when we need to
@@ -62,4 +63,3 @@ set title " Set the window’s title, reflecting the file currently being edited
 set background=dark " Use colors that suit a dark background.
 colorscheme FireCode
 syntax on
-

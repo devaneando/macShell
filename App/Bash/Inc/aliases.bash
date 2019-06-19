@@ -7,7 +7,7 @@ alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
 
-alias grep='grep --color'
+alias grep='grep --no-messages --extended-regexp --color'
 alias la='ls -AFho'
 alias ps='ps -Afr'
 
@@ -37,3 +37,14 @@ function __vi() {
     fi
 }
 alias vi="__vi"
+
+function shortcuts() {
+    echo "    CTRL+A:     Go to the start of the line"
+    echo "    CTRL+E:     Go to the end of the line"
+    echo "    ALT+B:      Go back one word"
+    echo "    ALT+F:      Go right one word"
+    echo "    CTRL+U:     Delete do the start of the line"
+    echo "    CTRL+K:     Delete do the end of the line"
+    echo "    CTRL+P:     Go to the previous command in the command history"
+    echo "    CTRL+N:     Go to the next command in the command history"
+}
