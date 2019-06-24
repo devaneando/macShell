@@ -34,5 +34,6 @@ fi
 
 export PATH="$PATH:.:/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/opt/local/bin:/opt/local/sbin"
 export PATH="$PATH:${HOME}/Shell/App/Git/Scripts"
+export PATH="$PATH:/Applications/MySQLWorkbench.app/Contents/MacOS"
 
 export CDPATH=~/Projects

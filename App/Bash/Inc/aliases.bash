@@ -10,6 +10,7 @@ alias .......='cd ../../../../../..'
 alias grep='grep --no-messages --extended-regexp --color'
 alias la='ls -AFho'
 alias ps='ps -Afr'
+alias mysqldump="mysqldump --column-statistics=0"
 
 # Allows vi to automatically edit protected files
 function __vi() {
@@ -47,4 +48,5 @@ function shortcuts() {
     echo "    CTRL+K:     Delete do the end of the line"
     echo "    CTRL+P:     Go to the previous command in the command history"
     echo "    CTRL+N:     Go to the next command in the command history"
+    echo "    CMD+K:      Clears terminal"
 }
