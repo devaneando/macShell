@@ -1,4 +1,11 @@
 #!/bin/bash
 # Unstage last commit and all its files
 
+if [[ "${1}" != 'yes' ]]; then
+    printf "      \e[91mATENTION \e[39m\n"
+    printf "      \e[33mThis will drop your last commit and replace the files to the workspace.\e[39m\n"
+    printf "      \e[33mIf you really want to doi, call git unstage with the ´yes´parameter: \e[39m\n"
+    printf "            \e[96m\e[4mgit unstage yes \e[39m\n"
+fi
+
 git reset --hard HEAD

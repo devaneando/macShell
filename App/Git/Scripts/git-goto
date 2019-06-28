@@ -1,0 +1,26 @@
+#!/bin/bash
+# Checkout to a branch, if it exists
+
+git rev-parse --verify "${1}" >> /dev/null 2>&1
+
+if [[ $? -eq 0 ]]; then
+    git checkout "${1}"
+    exit 0
+else
+    git rev-parse --verify "GUEST-${1}" >> /dev/null 2>&1
+    if [[ $? -eq 0 ]]; then
+        git checkout "GUEST-${1}"
+        exit 0
+    fi
+fi
+
+branches=$(git for-each-ref --format='%(refname:short)' refs/heads)
+for branch in $branches; do
+    if [[ "${branch}" == *"${1}"* ]]; then
+        git checkout "${branch}"
+        printf " \e[93mThe branch ${1} does not exist, but I checked out to "${branch}".\e[39m\n"
+        exit 0
+    fi
+done
+
+printf " \e[91mThe branch ${1} does not exist.\e[39m\n"

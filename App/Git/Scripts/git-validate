@@ -1,0 +1,41 @@
+#!/bin/bash
+
+PROJECT=$(pwd)
+STAGED_FILES_CMD=$(git diff --cached --name-only --diff-filter=ACMR HEAD | grep \\.php)
+MODIFIED_FILES=$(git ls-files -m)
+DIFF_SUFFIX="_diff"
+PHPCS_SUFFIX="_phpcs.json"
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+declare -i ERROR_COUNTER=0
+
+if [ "$#" -eq 1 ]
+then
+    oIFS=$IFS
+    IFS=''
+    SFILES="$1"
+    IFS=$oIFS
+fi
+SFILES=${SFILES:-$STAGED_FILES_CMD}
+
+echo -e "$YELLOW ##### Checking staged files $NC"
+for FILE in $SFILES
+do
+    if [ -f $FILE ]
+    then
+        ERROR=$(php -l $PROJECT/$FILE)
+        rc=$?; if [[ $rc != 0 ]]; then echo -e "$RED$ERROR$NC"; fi
+    fi
+done
+
+echo -e "$CYAN ##### Checking modified files $NC"
+for FILE in $MODIFIED_FILES
+do
+    if [ -f $FILE ]
+    then
+        ERROR=$(php -l $PROJECT/$FILE)
+        rc=$?; if [[ $rc != 0 ]]; then echo -e "$RED$ERROR$NC"; fi
+    fi
+done

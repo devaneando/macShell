@@ -1,0 +1,5 @@
+#!/bin/bash
+# Fix the gui gui problem in MacOs
+
+git config --local --unset gui.geometry
+git gui
