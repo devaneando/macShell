@@ -1,0 +1,82 @@
+#!/bin/bash
+# Checkout to a branch, if it exists
+
+DEPLOY="${HOME}/dev_environment/guestcentric-src/deployments"
+
+if [[ $(basename `pwd`| tr -d '[:space:]') == "guestcentric-src" ]]; then
+    printf " \e[91m ----- Sorry but I won't create packages in guestcentric-src.\e[39m\n"
+    exit 1
+fi
+
+if [[ $(basename `pwd`| tr -d '[:space:]') == "dev_environment" ]]; then
+    printf " \e[91m ----- Sorry but I won't create packages in dev_environment.\e[39m\n"
+    exit 1
+fi
+
+
+
+BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'| tr -d '[:space:]')
+if [[ "${BRANCH}" == "master" ]]; then
+    printf " \e[91m ----- Sorry but I won't deploy the master branch.\e[39m\n"
+    exit 1
+fi
+
+git checkout master
+git pull --quiet origin master
+git checkout "${BRANCH}"
+git rebase master
+
+if [[ $? -gt 0 ]]; then
+    git rebase --abort
+    printf " \e[91m ----- Sorry but there are conflicts that you need to resolve.\e[39m\n"
+    exit 1
+fi
+
+FOLDER=$(basename `pwd`| tr -d '[:space:]')
+SUFIX=""
+
+case "${FOLDER}" in
+    "cmf")
+        SUFIX="_cmf"
+        ;;
+    "gc-global")
+        SUFIX=""
+        ;;
+    "gc-global.01")
+        SUFIX=""
+        ;;
+    "gc-global.630")
+        SUFIX=""
+        ;;
+    "gc-shared")
+        SUFIX="_shared"
+        ;;
+    "backoffice")
+        SUFIX="_backoffice"
+        ;;
+    "lara")
+        SUFIX="_lara"
+        ;;
+    "logger")
+        SUFIX="_logger"
+        ;;
+    "portals")
+        SUFIX="_portals"
+        ;;
+    "tools")
+        SUFIX="_tools"
+        ;;
+    "worker")
+        SUFIX="_worker"
+        ;;
+esac
+
+FILES=$(git diff --name-only master)
+tar -cvf "ticket_${BRANCH}${SUFIX}.tar" ${FILES}
+if [[ $? -eq 0 ]]; then
+    printf " \e[92m ----- ticket_${BRANCH}${SUFIX}.tar created.\e[39m\n"
+fi
+mv -f -v "./ticket_${BRANCH}${SUFIX}.tar" "${DEPLOY}"
+if [[ $? -eq 0 ]]; then
+    printf " \e[92m ----- ticket_${BRANCH}${SUFIX}.tar noved to the deploy folder.\e[39m\n"
+fi

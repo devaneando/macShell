@@ -44,4 +44,4 @@ export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
 
 export PATH=$PATH:${HOME}/dev_environment/gc-tasks
 
-export CDPATH=~/Projects
+export CDPATH=~/dev_environment/guestcentric-src/gc-global.01:/Users/eduardo.fernandes/dev_environment/guestcentric-src/cmf:/Users/eduardo.fernandes/dev_environment/guestcentric-src

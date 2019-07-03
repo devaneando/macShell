@@ -11,6 +11,7 @@ alias grep='grep --no-messages --extended-regexp --color'
 alias la='ls -AFho'
 alias ps='ps -Afr'
 alias mysqldump="mysqldump --column-statistics=0"
+alias gti="git"
 
 # Allows vi to automatically edit protected files
 function __vi() {
