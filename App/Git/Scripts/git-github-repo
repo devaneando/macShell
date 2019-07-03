@@ -1,3 +1,6 @@
 #!/bin/bash
-# Returns the user/repo for the origin remote.
+
+HELP="Returns the user/repo for the origin remote."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
 git remote -v | grep "^origin.\+\(push\)" | awk '{print $2}' | perl -e 's/^(https:\/\/|git@)github.com[:\/](.+?)(\.git)?$/$2/' -p

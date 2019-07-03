@@ -1,7 +1,12 @@
 #!/bin/bash
-# Display the top contributors to a file.  Currently displays top four committers.
-#
-#   $ git fault <filename>
+
+read -d '' HELP <<"EOF"
+    Display the top contributors to a file.
+    Currently displays top four committers.
+    $ git fault <filename>
+EOF
+
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 # TODO flag for the max number of users to display
 NUM_TO_DISPLAY=4

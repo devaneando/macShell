@@ -1,4 +1,6 @@
 #!/bin/bash
-# List all git aliases
+
+HELP="List all aliases."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 git config --get-regexp alias

@@ -1,5 +1,8 @@
 #!/bin/bash
-# Check out the primary branch on the upstream remote.
+
+HELP="Check out the primary branch on the upstream remote."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
 git fetch-upstream
 
 UPSTREAM=`git upstream-branch`

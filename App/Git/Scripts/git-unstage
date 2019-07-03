@@ -1,5 +1,7 @@
 #!/bin/bash
-# Unstage last commit and all its files
+
+HELP="Revert last commit and all its files"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 if [[ "${1}" != 'yes' ]]; then
     printf "\n"

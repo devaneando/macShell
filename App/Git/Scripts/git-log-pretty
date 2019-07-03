@@ -1,3 +1,6 @@
 #!/bin/bash
-# Display the log with a colorful graph.
+
+HELP="Display the log with a colorful graph."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
 git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --

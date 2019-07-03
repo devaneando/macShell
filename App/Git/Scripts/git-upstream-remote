@@ -1,3 +1,6 @@
 #!/bin/bash
-# Return the name of the (best guess) upstream remote.
+
+HELP="Return the name of the (best guess) upstream remote."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
 ( git remote | grep upstream ) || ( git remote | grep origin )

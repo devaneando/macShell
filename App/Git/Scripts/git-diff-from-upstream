@@ -1,5 +1,7 @@
 #!/bin/bash
-# Show the difference compared to the upstream branch.
+HELP="Show the difference compared to the upstream branch."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
 git fetch-upstream
 
 UPSTREAM=`git upstream-branch`

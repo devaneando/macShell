@@ -1,0 +1,6 @@
+#!/bin/bash
+
+HELP="Print out the name of the currently checked-out branch."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
+git symbolic-ref HEAD --short

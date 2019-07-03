@@ -1,4 +1,6 @@
 #!/bin/bash
-# Add all changed files to git
+
+HELP="Add all changed files to git"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 git add --all --no-ignore-removal

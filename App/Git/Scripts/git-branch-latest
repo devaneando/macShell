@@ -1,0 +1,14 @@
+#!/bin/bash
+
+read -d '' HELP <<"EOF"
+    Display the remote branches by newest commit.
+    May be helpful to limit the number returned with `| head -n 10`.
+    https://coderwall.com/p/ndinba
+EOF
+
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
+git for-each-ref \
+    --sort=-committerdate \
+    --format='%(committerdate:short) %(refname:short)' \
+    refs/remotes/origin/ | head -n 1

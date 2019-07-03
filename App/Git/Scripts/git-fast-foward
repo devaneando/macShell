@@ -1,4 +1,6 @@
 #!/bin/bash
-# Merge with fast foward only
+
+HELP="Merge with fast foward only"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 git merge --ff-only --progress

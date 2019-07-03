@@ -1,3 +1,6 @@
 #!/bin/bash
-# Merge the specified branch, ignoring whitespace.
+
+HELP="Merge the specified branch, ignoring whitespace."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
 git merge -s recursive -Xignore-space-change

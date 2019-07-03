@@ -1,5 +1,7 @@
 #!/bin/bash
-# Show a nicely formatted list with the lastest changes
+
+HELP="Show a nicely formatted list with the lastest changes"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 git whatchanged \
     --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \

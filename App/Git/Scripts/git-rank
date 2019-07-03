@@ -1,4 +1,6 @@
 #!/bin/bash
-# Count the number of commits each participant made
+
+HELP="Count the number of commits each participant made"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 git shortlog -sn --no-merges

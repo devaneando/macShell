@@ -1,5 +1,8 @@
 #!/bin/bash
-# Update the current branch from the primary branch.
+
+HELP="Update the current branch from the primary branch."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
 git fetch-upstream
 
 UPSTREAM=`git upstream-branch`

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+HELP="Validate if there are PHP bugs in the code"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
 PROJECT=$(pwd)
 STAGED_FILES_CMD=$(git diff --cached --name-only --diff-filter=ACMR HEAD | grep \\.php)
 MODIFIED_FILES=$(git ls-files -m)

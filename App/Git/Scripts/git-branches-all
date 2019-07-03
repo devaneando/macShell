@@ -1,4 +1,6 @@
 #!/bin/bash
-# LIst all branches
+
+HELP="List all branches"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 git branch --all

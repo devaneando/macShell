@@ -1,5 +1,11 @@
 #!/bin/bash
-# Commit all added, changed, and removed files. Accepts all options that `git commit` does.
+
+read -d '' HELP <<"EOF"
+    Commit all added, changed, and removed files.
+    Accepts all options that `git commit` does.
+EOF
+
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 git add --all
 git commit "$@"

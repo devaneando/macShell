@@ -1,4 +1,7 @@
 #!/bin/bash
-# Fetch from the upstream remote.
+
+HELP="Fetch from the upstream remote."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
 REMOTE=`git upstream-remote`
 git fetch $REMOTE

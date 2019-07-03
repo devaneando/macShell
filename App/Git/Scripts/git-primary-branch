@@ -1,5 +1,7 @@
 #!/bin/bash
-# Print out the name of the branch to be considered "primary" (best guess).
+
+HELP="Print out the name of the branch to be considered \"primary\" (best guess)."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 function num_remote_branches()
 {

@@ -1,5 +1,10 @@
 #!/bin/bash
-# Show a nicely formatted list fo all branches
-# Push the commit to the remote repository.
+
+read -d '' HELP <<"EOF"
+    Show a nicely formatted list fo all branches
+    Push the commit to the remote repository.
+EOF
+
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 git rebase --committer-date-is-author-date

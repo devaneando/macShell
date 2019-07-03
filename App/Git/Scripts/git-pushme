@@ -1,4 +1,6 @@
 #!/bin/bash
-# Push local to the remote branch
+
+HELP="Push local to the remote branch"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 git push --progress origin $(git symbolic-ref --short HEAD) "${@}"

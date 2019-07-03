@@ -1,8 +1,8 @@
 #!/bin/bash
-# Create a new branch
 
-git add --all --no-ignore-removal
-DATE="$(date +'%Y-%m-%d %H:%M')"
+HELP="Create a new branch"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
 if [ -z "$1" ]; then
     echo "Can't proceed without a branch name"
     exit
