@@ -7,20 +7,28 @@ if [[ -e "${1}" ]]; then
     exit 0
 fi
 
-git rev-parse --verify "${1}" >> /dev/null 2>&1
-
+git rev-parse --verify "GUEST\-${1}" >> /dev/null 2>&1
 if [[ $? -eq 0 ]]; then
     git checkout "${1}"
     exit 0
-else
-    git rev-parse --verify "GUEST-${1}" >> /dev/null 2>&1
-    if [[ $? -eq 0 ]]; then
-        git checkout "GUEST-${1}"
-        exit 0
-    fi
 fi
 
-branches=$(git ls-remote --heads origin  | sed 's?.*refs/heads/??')
+git rev-parse --verify "GUEST\-${1}" >> /dev/null 2>&1
+if [[ $? -eq 0 ]]; then
+    git checkout "GUEST-${1}"
+    exit 0
+fi
+
+
+branches=$(git ls-remote --heads origin  | sed 's?.*refs/heads/??') >> /dev/null 2>&1S
+for branch in $branches; do
+    if [[ "${branch}" == "GUEST-${1}" ]]; then
+        git checkout "${branch}"
+        printf " \e[93mThe branch ${1} does not exist localy, but I checked out to "${branch}".\e[39m\n"
+        exit 0
+    fi
+done
+
 for branch in $branches; do
     if [[ "${branch}" == *"${1}"* ]]; then
         git checkout "${branch}"
