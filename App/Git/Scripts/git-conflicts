@@ -1,0 +1,55 @@
+#!/bin/bash
+HELP="Checkout to a branch, if it exists."
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
+if [[ -z "${1}" ]]; then
+    printf " \e[93mWhat branch do you want to verify?.\e[39m\n"
+    exit 1
+fi
+
+CURRENT=$(pwd)
+FOLDER=$(pwd| sed -E 's/^(.*)\/dev_environment.*$/\1/')"/dev_environment/"
+DEPLOY=$(find /Users/eduardo.fernandes/dev_environment -iname "deployments" -type d)"/"
+if [[ -z "${DEPLOY}" ]]; then
+    printf " \e[93mI don't know where is the deployments folder.\e[39m\n"
+    exit 1
+fi
+
+cd "${DEPLOY}"
+
+# git pull origin master
+
+# PACKAGE=$(ls -t ticket_${1}* | head -1)
+TMP_FILE='/tmp/use_for_conflicts_'
+
+IFS=$'\r\n' command eval 'PACKAGES=($(ls -t ${DEPLOY}*${1}*))'
+
+if [[ -z "${PACKAGES}" ]]; then
+    printf " \e[93mI couldn't find any package.\e[39m\n"
+    exit 1
+fi
+
+FILES_COLLECTION=""
+COUNT_PACKAGES=0
+while [[ ! -z ${PACKAGES[${COUNT_PACKAGES}]} ]]; do
+    IFS=$'\r\n' command eval 'FILES=($(tar -tf ${PACKAGES[${COUNT_PACKAGES}]}))'
+    COUNT_FILES=0
+    while [[ ! -z ${FILES[${COUNT_FILES}]} ]]; do
+        FILES_COLLECTION+=${FILES[${COUNT_FILES}]}"|"
+        COUNT_FILES=$(( COUNT_FILES + 1 ))
+    done
+     COUNT_PACKAGES=$(( COUNT_PACKAGES + 1 ))
+done
+
+COUNT_COMPARE=0
+while [[ ! -z ${PACKAGES[${COUNT_COMPARE}]} ]]; do
+    echo ${FILES_COLLECTION[${COUNT_COMPARE}]}
+    tar -tf ${PACKAGES[${COUNT_COMPARE}]} | grep $FILES_COLLECTION
+    COUNT_COMPARE=$(( COUNT_COMPARE + 1 ))
+done
+
+
+
+# #tar -tvf "${PACKAGE}"| awk -F/ '{if (NF<4) print }'
+
+cd "${CURRENT}"

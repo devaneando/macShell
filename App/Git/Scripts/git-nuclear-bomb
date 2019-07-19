@@ -4,9 +4,11 @@ HELP="Completely replace the local with the remote branch"
 source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 read -p "Are sure you want to replace your local branch with its remote counterpart?" -n 1 -r
-echo
+printf "\n\n"
+
+BRANCH=origin/$(git symbolic-ref --short HEAD)
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    git reset --hard origin/$(git symbolic-ref --short HEAD)
-endif
+    git reset --hard $BRANCH
+fi
 

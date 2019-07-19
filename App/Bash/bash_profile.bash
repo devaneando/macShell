@@ -16,6 +16,10 @@ if [[ -f "${BASE}/App/Bash/Inc/aliases.bash" ]]; then
     source "${BASE}/App/Bash/Inc/aliases.bash"
 fi
 
+if [[ -f "${BASE}/App/Bash/Inc/execute.bash" ]]; then
+    source "${BASE}/App/Bash/Inc/execute.bash"
+fi
+
 # if [[ -f "${BASE}/App/Bash/Inc/dirColors.bash" ]]; then
 #     eval "$(dircolors ${BASE}/App/Bash/Inc/dirColors.bash)"
 # fi
@@ -42,6 +46,8 @@ export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"
 export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"
 export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
 
-export PATH=$PATH:${HOME}/dev_environment/gc-tasks
+export PATH=$PATH:${HOME}/Development/dev_environment/gc-tasks
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="$PATH:Development/flutter/bin"
 
-export CDPATH=~/dev_environment/guestcentric-src/gc-global.01:/Users/eduardo.fernandes/dev_environment/guestcentric-src/cmf:/Users/eduardo.fernandes/dev_environment/guestcentric-src
+export CDPATH=~/Development/dev_environment/guestcentric-src/gc-global.01:/Users/eduardo.fernandes/Development/dev_environment/guestcentric-src/cmf:/Users/eduardo.fernandes/Development/dev_environment/guestcentric-src

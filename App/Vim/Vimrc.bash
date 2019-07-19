@@ -1,65 +1,92 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+"### Turn filetype detection off and, even if it's not strictly"
+"### necessary, disable loading of indent scripts and filetype plugins."
+set nocompatible
+filetype off
 
-" set the runtime path to include Vundle and initialize
+"### Set the runtime path to include Vundle and initialize."
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call vundle#begin('~/.vim/bundle/Plugins')
 
-" let Vundle manage Vundle, required
+"### Let Vundle manage Vundle (required)."
 Plugin 'VundleVim/Vundle.vim'
 
+"### Plugin list"
+Plugin 'itchyny/lightline.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'morhetz/gruvbox'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'xstrex/FireCode.vim'
+"### All of your Plugins must be added before the following line."
+call vundle#end()
+filetype plugin indent on
+"### Put your non-Plugin stuff after this line "
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
+"### Disable the swapfile and backups."
 set noswapfile
-set showcmd " show command in bottom bar
-set cursorline " highlight current line
-set lazyredraw " redraw only when we need to
-set showmatch " highlight matching [{()}]
-set incsearch " search as characters are entered
-set hlsearch " highlight matches
-set nobackup " Disable backups
-set expandtab " Convert tabs to spaces.
-filetype indent on " Enable indentation rules that are file-type specific.
-set shiftround " When shifting lines, round the indentation to the nearest multiple of “shiftwidth.”
-set shiftwidth=4 " When shifting, indent using four spaces.
-set smarttab " Insert “tabstop” number of spaces when the “tab” key is pressed.
-set tabstop=4 " Indent using four spaces.
-set laststatus=2 " Always display the status bar.
-set ruler " Always show cursor position.
-set wildmenu " Display command line’s tab complete options as a menu.
-set cursorline " Highlight the line currently under cursor.
-set number " Show line numbers on the sidebar.
-set noerrorbells " Disable beep on errors.
-set visualbell " Flash the screen instead of beeping on errors.
-set mouse=a " Enable mouse for scrolling and resizing.
-set title " Set the window’s title, reflecting the file currently being edited.
-set background=dark " Use colors that suit a dark background.
-colorscheme FireCode
+set nobackup
+
+"### Show command in bottom bar."
+set showcmd
+
+"### Highlight current line."
+set cursorline
+
+"### Redraw only when we need to."
+set lazyredraw
+
+"### highlight matching [{()}]."
+set showmatch
+
+"### search as characters are entered ans hightlight maches."
+set incsearch
+set hlsearch
+
+"### Convert tabs to spaces. "
+set expandtab
+
+"### Disable indentation rules that are file-type specific. "
+filetype indent off
+
+"### When shifting lines, round the indentation to the nearest multiple of 'shiftwidth' and ident with four spaces."
+set shiftround
+set shiftwidth=4
+
+"### Ident with four spaces and insert 'tabstop' number of spaces when the 'tab' key is pressed."
+set tabstop=4
+set smarttab
+
+"### Always display the status bar."
+set laststatus=2
+
+"### Always show cursor position."
+set ruler
+
+"### Display command line’s tab complete options as a menu."
+set wildmenu
+
+"### Highlight the line currently under cursor."
+set cursorline
+
+"### Show line numbers on the sidebar."
+set number
+
+"### Disable errors."
+set noerrorbells
+set visualbell
+
+"### Totally disable mouse."
+set mouse=
+set ttymouse=
+
+"### Set the window’s title, reflecting the file currently being edited."
+set title
+
+"### Enable syntax highlight."
 syntax on
+
+"### Configure the collor schema."
+set background=dark
+let g:gruvbox_italic=1
+colorscheme gruvbox
+

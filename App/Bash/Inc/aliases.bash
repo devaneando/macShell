@@ -13,6 +13,8 @@ alias ps='ps -Afr'
 alias mysqldump="mysqldump --column-statistics=0"
 alias gti="git"
 
+alias exe="execute"
+
 # Allows vi to automatically edit protected files
 function __vi() {
     # If the file in question does not exist
