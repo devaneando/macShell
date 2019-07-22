@@ -1,4 +1,4 @@
-function dexec()
+function docker-exec()
 {
     IFS=' '
     IMAGE=$(docker ps | grep "${2}")
