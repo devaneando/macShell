@@ -23,8 +23,9 @@ function kadu
         return 0
     fi
 
-    source $FOLDER/${1}.bash
-    ${1} $@
+    SCRIPT="${1}"
+    shift
 
-
+    source $FOLDER/${SCRIPT}.bash
+    ${SCRIPT} $@
 }
