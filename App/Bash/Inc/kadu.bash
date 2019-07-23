@@ -14,6 +14,36 @@ export CL_UNDERLINE=$(tput smul)
 export CL_WHITE=$(tput setaf 7)
 export CL_YELLOW=$(tput setaf 3)
 
+function __fatal()
+{
+    printf "${CL_WHITE}-          ${CL_RED}${1}${CL_NORMAL}\n"
+    return 1
+}
+
+function __error()
+{
+    printf "${CL_WHITE}-          ${CL_RED}${CL_UNDERLINE}${1}${CL_NORMAL}\n"
+    return 0
+}
+
+function __warn()
+{
+    printf "${CL_WHITE}-          ${CL_YELLOW}${1}${CL_NORMAL}\n"
+    return 0
+}
+
+function __info()
+{
+    printf "${CL_WHITE}-          ${CL_GREEN}${1}${CL_NORMAL}\n"
+    return 0
+}
+
+function __emphasize()
+{
+    printf "${CL_WHITE}-          ${CL_WHITE}${CL_UNDERLINE}${1}${CL_NORMAL}\n"
+    return 0
+}
+
 function kadu
 {
     if [[ ! -f "$FOLDER/${1}.bash" ]]; then

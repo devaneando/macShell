@@ -1,5 +1,5 @@
 function bomba()
 {
     shift
-    printf "${CL_RED}Bomba${CL_NORMAL}"
+    __error "Bomba"
 }

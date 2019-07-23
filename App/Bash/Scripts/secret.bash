@@ -6,6 +6,7 @@ function secret()
         SIZE="${1}"
     fi
 
-    LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= < /dev/urandom | head -c "${SIZE}" | xargs
+    SECRET=$(LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= < /dev/urandom | head -c "${SIZE}" | xargs)
+    __emphasize "${SECRET}"
 
 }

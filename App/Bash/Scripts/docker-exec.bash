@@ -1,5 +1,10 @@
 function docker-exec()
 {
+    if [[ -z ${1} ]]; then
+        __fatal "You must provide the image name (only part of the name is enough)."
+        return 1
+    fi
+
     IFS=' '
     IMAGE=$(docker ps | grep "${1}")
     read -a strarr <<< $IMAGE
