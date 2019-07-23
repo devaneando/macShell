@@ -21,16 +21,32 @@ if [[ $? -eq 0 ]]; then
     exit 0
 fi
 
-branches=$(git for-each-ref --format='%(refname:short)' refs/heads/*) >> /dev/null 2>&1S
+# Try to checkout to the local branches
+branches=$(git for-each-ref --format='%(refname:short)' refs/heads/*) >> /dev/null 2>&1
 for branch in $branches; do
     if [[ "${branch}" == "GUEST-${1}" ]]; then
+        git checkout "GUEST-${branch}"
+        printf " \e[93mThe branch ${1} does not exist localy, but I checked out to "GUEST-${branch}".\e[39m\n"
+        exit 0
+    fi
+
+    if [[ "${branch}" == *"${1}"* ]]; then
         git checkout "${branch}"
         printf " \e[93mThe branch ${1} does not exist localy, but I checked out to "${branch}".\e[39m\n"
         exit 0
     fi
 done
 
+# Try to checkout to the remote branches
+git fetch
+branches=$(git branch -a)
 for branch in $branches; do
+    if [[ "${branch}" == *"GUEST-${1}"* ]]; then
+        git checkout "GUEST-${1}"
+        printf " \e[93mThe branch ${1} does not exist localy, but I checked out to "${branch}".\e[39m\n"
+        exit 0
+    fi
+
     if [[ "${branch}" == *"${1}"* ]]; then
         git checkout "${branch}"
         printf " \e[93mThe branch ${1} does not exist localy, but I checked out to "${branch}".\e[39m\n"
