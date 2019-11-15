@@ -1,6 +1,3 @@
 #!/bin/bash
 
-HELP="Pull the remote to the local branch"
-source "${HOME}/Shell/App/Git/Scripts/base.bash"
-
 git pull --ff-only --no-rebase --progress

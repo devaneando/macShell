@@ -1,0 +1,77 @@
+#!/bin/bash
+
+CURRENT_FOLDER=`echo "${PWD##*\/}"`
+CURRENT_BRANCH="`echo $(git symbolic-ref --short HEAD)`"
+case "${CURRENT_FOLDER}" in
+    "backoffice")
+        PACKAGE_TYPE="_backoffice"
+        ;;
+    "cmf")
+        PACKAGE_TYPE="_cmf"
+        ;;
+    "crs")
+        PACKAGE_TYPE="_crs"
+        ;;
+    "datavault")
+        PACKAGE_TYPE="_datavault"
+        ;;
+    "gc-global"|"gc-global.01"|"gc-global.630")
+        PACKAGE_TYPE=""
+        ;;
+    "gc-shared")
+        PACKAGE_TYPE="_shared"
+        ;;
+    "invoices")
+        PACKAGE_TYPE="_invoices"
+        ;;
+    "lara")
+        PACKAGE_TYPE="_lara"
+        ;;
+    "logger")
+        PACKAGE_TYPE="_logger"
+        ;;
+    "logs")
+        PACKAGE_TYPE="_logs"
+        ;;
+    "poi")
+        PACKAGE_TYPE="_poi"
+        ;;
+    "poi-points-of-interest")
+        PACKAGE_TYPE="_pointsofinterest"
+        ;;
+    "portals")
+        PACKAGE_TYPE="_portals"
+        ;;
+    "queue")
+        PACKAGE_TYPE="_queue"
+        ;;
+    "reporting")
+        PACKAGE_TYPE="_reporting"
+        ;;
+
+    "reporting-api")
+        PACKAGE_TYPE="_reportingapi"
+        ;;
+    "templates")
+        PACKAGE_TYPE="_templates"
+        ;;
+    "tools")
+        PACKAGE_TYPE="_tools"
+        ;;
+    "worker")
+        PACKAGE_TYPE="_worker"
+        ;;
+    *)
+        PACKAGE_TYPE=""
+        ;;
+esac
+
+TICKET_NAME="ticket_${CURRENT_BRANCH}${PACKAGE_TYPE}.tar"
+
+tar -cvf "${TICKET_NAME}" `git diff master --name-only`
+if [[ -f "${TICKET_NAME}" ]]; then
+    printf "\033[0;32mFile ${TICKET_NAME} created!!!\033[0m\n"
+else
+    printf "\033[0;31mI couldn't create the ${TICKET_NAME} file!!!\033[0m\n"
+fi
+

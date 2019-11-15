@@ -1,10 +1,5 @@
 #!/bin/bash
 
-read -d '' HELP <<"EOF"
-    Commit all added, changed, and removed files.
-    Push the commit to the remote repository.
-EOF
-
 source "${HOME}/Shell/App/Git/Scripts/base.bash"
 
 git add --all --no-ignore-removal

@@ -36,6 +36,31 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
 
+parse_git_stash() {
+    if [[ -z "$(parse_git_branch)" ]]; then
+        return
+    fi
+    local STASH=`git status --show-stash`
+    ICON=📗
+    if [[ $STASH == *"Your stash currently has"* ]]; then
+        ICON=📙
+    fi
+    printf $ICON
+}
+
+parse_git_status() {
+    if [[ -z parse_git_branch ]]; then
+        return
+    fi
+    local STATUS=`git diff --stat`
+    ICON=❤️
+    if [[ -z $STATUS ]]; then
+        ICON=💚
+    fi
+
+    printf $ICON
+}
+
 # Return the prompt symbol to use, colorized based on the return value of the
 # previous command.
 function set_prompt_symbol () {
@@ -46,21 +71,33 @@ function set_prompt_symbol () {
   fi
 }
 
+# Check https://blog.dhampir.no/content/avoiding-invalid-commands-in-bash-history
+function prevent_bad_history() {
+    local number=`history 1`
+    number=`echo -n "${number}" | sed -E 's/[^\ ]+([0-9]+) .*$/\1/g'`
+    if [ -n "$number" ]; then
+        if [[ ${1} -eq 127 ]]; then
+            history -d "${number}"
+        fi
+    fi
+}
+
 # Set the full bash prompt.
 function set_bash_prompt () {
-  # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
-  # return value of the last command.
-  set_prompt_symbol $?
+    # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
+    # return value of the last command.
+    local return_code=$?
+    set_prompt_symbol $return_code
+    prevent_bad_history $return_code
+    history -a; history -c; history -r
 
-   history -a
-   history -c
-   history -r
+    # Set the BRANCH variable.
+    BRANCH="$(parse_git_branch)"
+    #STASH="$(parse_git_stash)"
+    #STATUS="$(parse_git_status)"
 
-  # Set the BRANCH variable.
-  BRANCH="$(parse_git_branch)"
-
-  # Set the bash prompt variable.
-  PS1="${PYTHON_VIRTUALENV}${GREEN}\A${LIGHT_GREEN}${BRANCH}${WHITE}@${BLUE}\W${COLOR_NONE} ${PROMPT_SYMBOL} "
+    # Set the bash prompt variable.
+    PS1="${PYTHON_VIRTUALENV}${GREEN}\A${LIGHT_GREEN} ${BRANCH}  ${BLUE}\W${COLOR_NONE} ${PROMPT_SYMBOL} "
 }
 
 # Tell bash to execute this function just before displaying its prompt.

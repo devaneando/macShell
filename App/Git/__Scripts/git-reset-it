@@ -1,0 +1,7 @@
+#!/bin/bash
+
+HELP="Show a nicely formatted list with the lastest changes"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
+git status | awk '/modified/{split($0,a,":"); print "git checkout " a[2] > ("/tmp/gitRevert.bash")} END{close("/tmp/gitRevert.bash");system("chmod 755 /tmp/gitRevert.bash;/tmp/gitRevert.bash")}'
+

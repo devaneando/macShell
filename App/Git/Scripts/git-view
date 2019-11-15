@@ -1,7 +1,4 @@
 #!/bin/bash
 
-HELP="Fix the gui gui problem in MacOs and launch it"
-source "${HOME}/Shell/App/Git/Scripts/base.bash"
-
 git config --local --unset gui.geometry
 git gui

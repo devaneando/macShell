@@ -7,6 +7,7 @@ esac
 export BASE="${HOME}/Shell"
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
+export DEVELOPEMENT_HOME="${HOME}/Development"
 
 touch "${HOME}/.hushlogin"
 
@@ -18,13 +19,17 @@ if [[ -f "${BASE}/App/Bash/Inc/aliases.bash" ]]; then
     source "${BASE}/App/Bash/Inc/aliases.bash"
 fi
 
+if [[ -f "${BASE}/App/Bash/Inc/functions.bash" ]]; then
+    source "${BASE}/App/Bash/Inc/functions.bash"
+fi
+
+if [[ -f "${BASE}/App/Bash/Inc/appSpeeders.bash" ]]; then
+    source "${BASE}/App/Bash/Inc/appSpeeders.bash"
+fi
+
 if [[ -f "${BASE}/App/Bash/Inc/kadu.bash" ]]; then
     source "${BASE}/App/Bash/Inc/kadu.bash"
 fi
-
-# if [[ -f "${BASE}/App/Bash/Inc/dirColors.bash" ]]; then
-#     eval "$(dircolors ${BASE}/App/Bash/Inc/dirColors.bash)"
-# fi
 
 if [[ -f "${BASE}/App/Bash/Inc/prompt.bash" ]]; then
     source "${BASE}/App/Bash/Inc/prompt.bash"
@@ -45,3 +50,9 @@ fi
 if [[ -f "${BASE}/App/Bash/Inc/path.bash" ]]; then
     source "${BASE}/App/Bash/Inc/path.bash"
 fi
+
+bind 'set match-hidden-files off'
+
+export CDPATH=".:${HOME}/Development/Guest/dev_environment/guestcentric-src"
+export DYNAMO_ENDPOINT=http://localhost:8000
+export SHELL_SESSION_HISTORY=0

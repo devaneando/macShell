@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ "${1}" -ne "yes" ]]; then
+    printf "\033[0;31mIf you really want to nuke this repository, you need to pass \033[0;32myes \033[0;31mas parameter!!!\033[0m\n"
+    exit
+fi
+
+BRANCH=origin/$(git symbolic-ref --short HEAD)
+printf "\033[0;33mI'm nuking ${BRANCH}...\033[0m\n"
+
+git reset --hard $BRANCH
+

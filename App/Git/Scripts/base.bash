@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export BLUE="\e[94m"
 export CYAN="\e[96m"
 export GREEN="\e[92m"

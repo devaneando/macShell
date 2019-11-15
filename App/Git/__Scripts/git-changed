@@ -1,0 +1,6 @@
+#!/bin/bash
+
+HELP="Show a nicely formatted list with the lastest changes"
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
+git show --color --pretty=format:%b
