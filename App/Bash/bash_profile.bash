@@ -23,6 +23,10 @@ if [[ -f "${BASE}/App/Bash/Inc/functions.bash" ]]; then
     source "${BASE}/App/Bash/Inc/functions.bash"
 fi
 
+if [[ -d "${BASE}/App/Bash/Inc/functions" ]]; then
+    for f in "${BASE}/App/Bash/Inc/functions/*"; do source $f; done
+fi
+
 if [[ -f "${BASE}/App/Bash/Inc/appSpeeders.bash" ]]; then
     source "${BASE}/App/Bash/Inc/appSpeeders.bash"
 fi
@@ -56,3 +60,5 @@ bind 'set match-hidden-files off'
 export CDPATH=".:${HOME}/Development/Guest/dev_environment/guestcentric-src"
 export DYNAMO_ENDPOINT=http://localhost:8000
 export SHELL_SESSION_HISTORY=0
+
+alias joinMarkDown="/Users/eduardo.fernandes/Things/Notebook/.resources/joinMarkDown.php"

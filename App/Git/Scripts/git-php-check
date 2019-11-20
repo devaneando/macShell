@@ -1,0 +1,16 @@
+#!/bin/bash
+
+for file in `git diff master --name-only`
+do
+    if [[ "${file}" != *.php ]]; then
+        continue
+    fi
+    printf "\n\033[0;32mChecking ${file}\033[0m\n\n"
+    printf "\033[0;96m"
+    php -l "${file}"
+    printf "\033[0m"
+    phpmd "${file}" text "${HOME}/Shell/Standards/PhpMd/phpms.guestcentric.xml"
+    printf "\n"
+done
+
+

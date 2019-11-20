@@ -23,5 +23,3 @@ alias vi="__vi"
 alias wikiDestroy="dockerDestroy ${DEVELOPEMENT_HOME}/Wikitten/docker"
 alias wikiStart="dockerStart ${DEVELOPEMENT_HOME}/Wikitten/docker"
 alias wikiStop="dockerStop ${DEVELOPEMENT_HOME}/Wikitten/docker"
-
-
