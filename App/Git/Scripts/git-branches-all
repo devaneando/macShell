@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source "${HOME}/Shell/App/Git/Scripts/base.bash"
+
+git branch --all

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+STASH="${1}"
+
+if [[ -z "${STASH}" ]]; then
+    STASH="0"
+fi
+
+git stash show -p stash@{"${STASH}"}
+
