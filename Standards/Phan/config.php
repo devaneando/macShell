@@ -11,7 +11,7 @@ return [
     // If this is set to `null`,
     // then Phan assumes the PHP version which is closest to the minor version
     // of the php executable used to execute Phan.
-    "target_php_version" => null,
+    "target_php_version" => '7.2',
 
     // A list of directories that should be parsed for class and
     // method information. After excluding the directories
@@ -20,8 +20,9 @@ return [
     //
     // Thus, both first-party and third-party code being used by
     // your application should be included in this list.
-    'directory_list' => [],
-
+    'directory_list' => [
+        '/Users/eduardo.fernandes/Development/Guest/dev_environment/guestcentric-src/gc-global.01/bridgeAPI',
+    ],
     // A directory list that defines files that will be excluded
     // from static analysis, but whose class and method
     // information should be included.
@@ -34,7 +35,8 @@ return [
     //       should be added to the `directory_list` as
     //       to `exclude_analysis_directory_list`.
     "exclude_analysis_directory_list" => [
-        'vendor/'
+        'vendor/',
+        '/Users/eduardo.fernandes/Development/Guest/dev_environment/guestcentric-src/gc-global.01/bridgeAPI',
     ],
 
     // A list of plugin files to execute.
@@ -61,5 +63,18 @@ return [
         'UseReturnValuePlugin',
         'EmptyStatementListPlugin',
         'LoopVariableReusePlugin',
+    ],
+    // Add any issue types (such as 'PhanUndeclaredMethod')
+    // here to inhibit them from being reported
+    'suppress_issue_types' => [
+        'PhanUndeclaredClass',
+        'PhanUndeclaredClassConstant',
+        'PhanUndeclaredClassMethod',
+        'PhanUndeclaredExtendedClass',
+        'PhanUndeclaredInterface',
+        'PhanUndeclaredMethod',
+        'PhanUndeclaredTypeParameter',
+        'PhanUndeclaredTypeProperty',
+        'PhanUndeclaredTypeReturnType'
     ],
 ];

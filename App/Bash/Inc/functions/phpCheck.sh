@@ -37,7 +37,12 @@ function phpCheck()
         phpmd "${file}" text "${HOME}/Shell/Standards/PhpMd/phpms.guestcentric.xml"
         printf "\n"
         printf "\n\033[0;96mPHAN -l ${1}\033[0m\n\n"
-        phan --color --config-file "${HOME}/Shell/Standards/Phan/config.php" "${file}"
+        phan \
+            --color \
+            --disable-cache \
+            --processes 10 \
+            --progress-bar \
+            --config-file "${HOME}/Shell/Standards/Phan/config.php" "${file}"
         printf "\n"
     done
 }

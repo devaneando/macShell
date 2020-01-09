@@ -24,7 +24,8 @@ if [[ -f "${BASE}/App/Bash/Inc/functions.bash" ]]; then
 fi
 
 if [[ -d "${BASE}/App/Bash/Inc/functions" ]]; then
-    for f in "${BASE}/App/Bash/Inc/functions/*"; do source $f; done
+    source "${BASE}/App/Bash/Inc/functions/phpCheck.sh"
+    source "${BASE}/App/Bash/Inc/functions/jsonBeautify.sh"
 fi
 
 if [[ -f "${BASE}/App/Bash/Inc/appSpeeders.bash" ]]; then
@@ -61,4 +62,6 @@ export CDPATH=".:${HOME}/Development/Guest/dev_environment/guestcentric-src"
 export DYNAMO_ENDPOINT=http://localhost:8000
 export SHELL_SESSION_HISTORY=0
 
+alias guest="cd /Users/eduardo.fernandes/Development/Guest/dev_environment/guestcentric-src"
 alias joinMarkDown="/Users/eduardo.fernandes/Things/Notebook/.resources/joinMarkDown.php"
+alias clear="echo 'flush_all' | nc localhost 11211"

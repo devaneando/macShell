@@ -68,10 +68,12 @@ esac
 
 TICKET_NAME="ticket_${CURRENT_BRANCH}${PACKAGE_TYPE}.tar"
 
+#git stash
 tar -cvf "${TICKET_NAME}" `git diff master --name-only`
 if [[ -f "${TICKET_NAME}" ]]; then
     printf "\033[0;32mFile ${TICKET_NAME} created!!!\033[0m\n"
 else
     printf "\033[0;31mI couldn't create the ${TICKET_NAME} file!!!\033[0m\n"
 fi
+#git stash pop
 
